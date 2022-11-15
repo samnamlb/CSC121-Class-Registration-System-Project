@@ -37,14 +37,10 @@ def add_course(id, c_roster, c_max_size):
         elif len(c_roster[course]) >= c_max_size[course]:
             print('Course is full.')
         else:
-            print(c_roster[course])
-            print((c_max_size[course]))
             break
     course_list = c_roster[course]
     course_list.append(id)
     c_roster[course] = course_list
-
-    print(c_roster)
 
 
 def drop_course(id, c_roster):
