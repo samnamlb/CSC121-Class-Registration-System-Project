@@ -9,29 +9,25 @@
 # -----------------------------------------------------------------
 
 def list_courses(id, c_roster):
-    # ------------------------------------------------------------
-    # This function displays and counts courses a student has
-    # registered for.  It has two parameters: id is the ID of the
-    # student; c_roster is the list of class rosters. This function
-    # has no return value.
-    # -------------------------------------------------------------
-    pass  # temporarily avoid empty function definition
+    num_courses = 0
+    course_names = []
+    for keys, value in c_roster.items():
+        if id in value:
+            course_names.append(keys)
+            num_courses += 1
+
+    if num_courses > 1:
+        print(f'Registered to {num_courses} courses')
+    elif num_courses < 1:
+        print(f'Registered to no courses')
+    else:
+        print(f'Registered to {num_courses} course')
+    print('----------------------')
+    for course in course_names:
+        print(f'{course}')
 
 
 def add_course(id, c_roster, c_max_size):
-    # ------------------------------------------------------------
-    # This function adds a student to a course.  It has three
-    # parameters: id is the ID of the student to be added; c_roster is the
-    # list of class rosters; c_max_size is the list of maximum class sizes.
-    # This function asks user to enter the course he/she wants to add.
-    # If the course is not offered, display error message and stop.
-    # If student has already registered for this course, display
-    # error message and stop.
-    # If the course is full, display error message and stop.
-    # If everything is okay, add student ID to the course’s
-    # roster and display a message if there is no problem.  This
-    # function has no return value.
-    # -------------------------------------------------------------
     while True:
         course = input("Enter the course you would like: ")
         if course not in c_roster:
@@ -52,14 +48,12 @@ def add_course(id, c_roster, c_max_size):
 
 
 def drop_course(id, c_roster):
-    # ------------------------------------------------------------
-    # This function drops a student from a course.  It has two
-    # parameters: id is the ID of the student to be dropped;
-    # c_roster is the list of class rosters. This function asks
-    # the user to enter the course he/she wants to drop.  If the course
-    # is not offered, display error message and stop.  If the student
-    # is not enrolled in that course, display error message and stop.
-    # Remove student ID from the course’s roster and display a message
-    # if there is no problem.  This function has no return value.
-    # -------------------------------------------------------------
-    pass  # temporarily avoid empty function definition
+    while True:
+        course = input("Enter the course you would like to drop: ")
+        if course not in c_roster:
+            print('Course not offered.')
+        elif id not in c_roster[course]:
+            print('Student not in course.')
+        else:
+            break
+    c_roster[course].remove(id)
