@@ -25,8 +25,7 @@ def list_courses(id, c_roster):
         if id in value:
             print(keys)
             num_courses += 1
-    print(f'Total number: {num_courses}')
-
+    print(f'Total number: {num_courses}\n')
 
 
 def add_course(id, c_roster, c_max_size):
@@ -47,17 +46,17 @@ def add_course(id, c_roster, c_max_size):
     # Have user enter a course code
     course = input("Enter course you want to add: ")
     if course not in c_roster:
-        print('Course not found.')
+        print('Course not found.\n')
     elif id in c_roster[course]:
-        print('You are already enrolled in that course.')
+        print('You are already enrolled in that course.\n')
     elif len(c_roster[course]) >= c_max_size[course]:
-        print('Course already full.')
+        print('Course already full.\n')
     else:
         # Add student to course
         course_list = c_roster[course]
         course_list.append(id)
         c_roster[course] = course_list
-        print('Course added')
+        print('Course added.\n')
 
 
 def drop_course(id, c_roster):
@@ -75,10 +74,10 @@ def drop_course(id, c_roster):
     # Drops courses
     course = input("Enter course you want to drop: ")
     if course not in c_roster:
-        print('Course not found.')
+        print('Course not found.\n')
     elif id not in c_roster[course]:
-        print('You are not enrolled in that course.')
+        print('You are not enrolled in that course.\n')
     else:
         # Remove student from the specified course
         c_roster[course].remove(id)
-        print('Course dropped')
+        print('Course dropped.\n')
